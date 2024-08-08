@@ -1,8 +1,17 @@
-# React + Vite
+# Switch to the feature branch
+git checkout feature-branch-name
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Merge changes from develop (optional but often good to handle conflicts on feature branch)
+git pull origin develop
 
-Currently, two official plugins are available:
+# After resolving any conflicts and final local testing
+git push origin feature-branch-name
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Switch to develop
+git checkout develop
+
+# Merge the feature branch into develop
+git merge feature-branch-name
+
+# Push the updated develop branch
+git push origin develop
