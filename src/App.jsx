@@ -1,10 +1,14 @@
 // App.jsx
 import { useEffect, useState } from "react";
 import { getAllTickets } from "./services/ticketServices";
+import "./app.css"
 
 export const App = () => {
   const [count, setCount] = useState(0)
   const [allTickets, setAllTickets] = useState([])
+  const [showEmergancyOnly, setShowEmergencyOnly] = useState(false)
+  
+  
   useEffect(() => {
     getAllTickets().then(ticketsArray =>{
       setAllTickets(ticketsArray)
@@ -30,6 +34,9 @@ export const App = () => {
       </div>
       <div className="tickets-container">
         <h2>Tickets</h2>
+        <div>
+          <button classsName="filter-btn btn-primary">Emergency</button>
+        </div>
         <article className="tickets">
           {allTickets.map(ticket => {
             return (
