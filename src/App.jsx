@@ -1,10 +1,14 @@
 // App.jsx
 import { useEffect, useState } from "react";
 import { getAllTickets } from "./services/ticketServices";
+import "./app.css"
 
 export const App = () => {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
   const [allTickets, setAllTickets] = useState([])
+  const [showEmergancyOnly, setShowEmergencyOnly] = useState(false)
+  
+  
   useEffect(() => {
     getAllTickets().then(ticketsArray =>{
       setAllTickets(ticketsArray)
@@ -14,26 +18,20 @@ export const App = () => {
 
 
 
-  const handlebuttonclick = () => {
-  setCount (count + 1)
-  console.log("clicked me ouch!")
-  }
+
 
   return (
     <>
-      {""}
-      <div>
-        <h1>Hello!! :: </h1>
-        <div>Welcome to your first React Application!</div>
-        <button onClick={handlebuttonclick} className="btn-secondary">CLICK ME IF YOU DARE</button>
-        <div>COUNT {count}</div>
-      </div>
       <div className="tickets-container">
         <h2>Tickets</h2>
+        <div>
+          <button className="filter-btn btn-primary" onClick={() => (setShowEmergencyOnly(true)) }>Emergency</button>
+          <button className="filter-btn bte-secondary" onClick={() => (setShowEmergencyOnly(false))}>Show All</button>
+        </div>
         <article className="tickets">
           {allTickets.map(ticket => {
             return (
-              <section className="ticket">
+              <section className="ticket" key={ticket.id}>
                 <header className="ticket-info"> #{ticket.id}</header>
                 <div>{ticket.description}</div>
                 <footer>
