@@ -6,7 +6,7 @@ import "./app.css"
 export const App = () => {
   // const [count, setCount] = useState(0)
   const [allTickets, setAllTickets] = useState([])
-  const [showEmergancyOnly, setShowEmergencyOnly] = useState(false)
+  const [showEmergencyOnly, setShowEmergencyOnly] = useState(false)
   
   
   useEffect(() => {
@@ -16,7 +16,13 @@ export const App = () => {
     })
   }, [])
 
-
+useEffect (() => {
+  if (showEmergencyOnly) {
+    const emergencyTickets = allTickets.filter(ticket => ticket.emergency === true
+    )
+    setAllTickets(emergencyTickets)
+  } 
+},[showEmergencyOnly])
 
 
 
