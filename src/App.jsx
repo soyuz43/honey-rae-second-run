@@ -1,35 +1,48 @@
 // App.jsx
 import { useEffect, useState } from "react";
 import { getAllTickets } from "./services/ticketServices";
-import "./app.css"
+import "./app.css";
 
 export const App = () => {
-  // const [count, setCount] = useState(0)
-  const [allTickets, setAllTickets] = useState([])
-  const [showEmergancyOnly, setShowEmergencyOnly] = useState(false)
-  
-  
+  const [allTickets, setAllTickets] = useState([]);
+  const [showEmergencyOnly, setShowEmergencyOnly] = useState(false);
+  const [filteredTickets, setFilteredTickets] = useState([]);
+
   useEffect(() => {
-    getAllTickets().then(ticketsArray =>{
-      setAllTickets(ticketsArray)
-      console.log("Tickets Set")
-    })
-  }, [])
+    getAllTickets().then((ticketsArray) => {
+      setAllTickets(ticketsArray);
+    });
+  }, []);
 
-
-
-
+  useEffect(() => {
+    if (showEmergencyOnly) {
+      const emergencyTickets = allTickets.filter((ticket) => ticket.emergency);
+      setFilteredTickets(emergencyTickets);
+    } else {
+      setFilteredTickets(allTickets);
+    }
+  }, [showEmergencyOnly, allTickets]);
 
   return (
     <>
       <div className="tickets-container">
         <h2>Tickets</h2>
         <div>
-          <button className="filter-btn btn-primary" onClick={() => (setShowEmergencyOnly(true)) }>Emergency</button>
-          <button className="filter-btn bte-secondary" onClick={() => (setShowEmergencyOnly(false))}>Show All</button>
+          <button
+            className="filter-btn btn-primary"
+            onClick={() => setShowEmergencyOnly(true)}
+          >
+            Emergency
+          </button>
+          <button
+            className="filter-btn btn-secondary"
+            onClick={() => setShowEmergencyOnly(false)}
+          >
+            Show All
+          </button>
         </div>
         <article className="tickets">
-          {allTickets.map(ticket => {
+          {filteredTickets.map((ticket) => {
             return (
               <section className="ticket" key={ticket.id}>
                 <header className="ticket-info"> #{ticket.id}</header>
@@ -37,11 +50,11 @@ export const App = () => {
                 <footer>
                   <div>
                     <div className="ticket-info">emergency</div>
-                    <div>{ticket.emergency ? "yes" : "no" }</div>
+                    <div>{ticket.emergency ? "yes" : "no"}</div>
                   </div>
                 </footer>
               </section>
-            )
+            );
           })}
         </article>
       </div>
