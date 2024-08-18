@@ -11,7 +11,7 @@ export const TicketList = () => {
   useEffect(() => {
     getAllTickets().then((ticketsArray) => {
       setAllTickets(ticketsArray);
-    });
+    }); 
   }, []);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const TicketList = () => {
         </div>
         <article className="tickets">
           {filteredTickets.map((ticketObj) => {
-            return ( <Ticket ticket={ticketObj}/>            
+            return ( <Ticket ticket={ticketObj} name="Joe"key={ticketObj.id}/>            
             );
           })}
         </article>
