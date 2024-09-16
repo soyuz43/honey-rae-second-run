@@ -10,12 +10,11 @@ import { NavBar } from "./Components/nav/NavBar";
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<NavBar />} >
-      <Route path="/tickets" element={<TicketList />} />
-      <Route path="/employees" element={<EmployeeList />} />
-      <Route path="/customers" element={<CustomerList />} />
+      <Route path="/" element={<NavBar />}>
+        <Route path="/tickets" element={<TicketList />} />
+        <Route path="/employees" element={<EmployeeList />} />
+        <Route path="/customers" element={<CustomerList />} />
       </Route>
     </Routes>
-
   );
 };
