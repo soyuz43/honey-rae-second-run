@@ -2,7 +2,15 @@ export const getAllEmployees = () => {
     return fetch(`http://localhost:8088/employees?_expand=user`).then((res) => res.json()
 )
 }
-export const getEmployeeByUserId = () => {
-    return fetch(`http://localhost:8088/employees?userId=${id}&_expand=user&_embed=employeeTickets`).then((res) => res.json()
-)
-}
+export const getEmployeeByUserId = async (employeeId) => {
+    try {
+      const response = await fetch(`http://localhost:8088/employees?userId=${employeeId}&_expand=user&_embed=employeeTickets`);
+      const data = await response.json();
+      
+      console.log('Employee Data:', data); 
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
