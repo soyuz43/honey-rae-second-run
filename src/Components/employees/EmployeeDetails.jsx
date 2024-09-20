@@ -7,20 +7,26 @@ export const EmployeeDetails = () => {
   const [employee, setEmployee] = useState({}); // State to store employee data
 
   useEffect(() => {
-    getEmployeeByUserId(employeeId).then((data) => {
-      const employeeObj = data[0];
-      setEmployee(employeeObj);
-    });
+    console.log("employeeId:", employeeId); // Debug the employeeId
+    if (employeeId) {
+      getEmployeeByUserId(employeeId)
+        .then((data) => {
+          const employeeObj = data[0];
+          setEmployee(employeeObj);
+        })
+        .catch((error) => console.error("Error fetching employee data:", error));
+    }
   }, [employeeId]);
+  
 
   if (!employee) return <p>Loading employee details...</p>; // Handle loading state
 
   return (
     <section className="employee">
-      <header className="employee-header">{employee?.fullName}</header>
+      <header className="employee-header">{employee.user?.fullName}</header>
       <div>
         <span className="employee-info">Email: </span>
-        {employee.email}
+        {employee.user?.email}
       </div>
       <div>
         <span className="employee-info">Rate: </span>
