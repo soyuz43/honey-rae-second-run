@@ -20,7 +20,7 @@ export const EmployeeDetails = () => {
       <header className="employee-header">{employee?.fullName}</header>
       <div>
         <span className="employee-info">Email: </span>
-        {employee?.email}
+        {employee.email}
       </div>
       <div>
         <span className="employee-info">Rate: </span>
