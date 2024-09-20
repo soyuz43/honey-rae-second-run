@@ -10,10 +10,18 @@ import { EmployeeDetails } from "./Components/employees/EmployeeDetails";
 
 export const App = () => {
   return (
-    <div>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Outlet />}>
+    
+      
+    <Routes>
+    <Route 
+      path="/"
+      element={
+        <>
+        <NavBar />
+        <Outlet />
+        </>
+        }
+        >
           <Route index element={<Welcome />} />
           <Route path="/tickets" element={<TicketList />} />
           <Route path="/employees">
@@ -26,6 +34,6 @@ export const App = () => {
           </Route>
         </Route>
       </Routes>
-    </div>
+    
   );
 };
