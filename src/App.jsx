@@ -13,6 +13,7 @@ export const App = () => {
       <Route path="/register" element={<Register />} />
       
       <Route path="*" element={
+        // Checks if the user has the token
         <Authorized>
           <ApplicationViews />
         </Authorized>
