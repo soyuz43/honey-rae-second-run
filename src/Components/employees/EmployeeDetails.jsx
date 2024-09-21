@@ -36,6 +36,9 @@ export const EmployeeDetails = () => {
         <span className="employee-info">Specialty: </span>
         {employee.specialty}
       </div>
+      <div>
+        {employee.tickets}
+      </div>
     </section>
   );
 };
