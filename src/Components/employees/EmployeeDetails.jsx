@@ -37,7 +37,8 @@ export const EmployeeDetails = () => {
         {employee.specialty}
       </div>
       <div>
-        {employee.tickets}
+        <span className="employee-info">Ticket Count: </span>
+        {employee.employeeTickets?.length || 0}  
       </div>
     </section>
   );

@@ -22,6 +22,7 @@ export const Ticket = ({ ticket, currentUser, getAndSetTickets }) => {
     setAssignedEmployee(foundEmployee);
   }, [employees, ticket]);
 
+  
   const handleClaim = () => {                                                                     // Create a service Ticket entry in the joiner table
     const currentEmployee = employees.find(employeee => employeee.userId === currentUser.id)
 

@@ -8,39 +8,47 @@ import { EmployeeDetails } from "../Components/employees/EmployeeDetails";
 import { CustomerList } from "../Components/customers/customersList";
 import { TicketList } from "../Components/tickets/TicketList";
 import { EmployeeList } from "../Components/employees/EmployeesList";
-
+import { EmployeeForm } from "../Components/forms/EmployeeEdit";
 
 export const ApplicationViews = () => {
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState({});
 
-  useEffect (() => {
-    const localHoneyUser = localStorage.getItem("honey_user")
-    const honeyUserObject = JSON.parse(localHoneyUser)
+  useEffect(() => {
+    const localHoneyUser = localStorage.getItem("honey_user");
+    const honeyUserObject = JSON.parse(localHoneyUser);
 
-    setCurrentUser(honeyUserObject)
-  }, [])
+    setCurrentUser(honeyUserObject);
+  }, []);
 
-  
-  return <Routes>
-  <Route
-  path="/"
-  element={
-    <>
-      <NavBar />
-      <Outlet />
-    </>
-  }
->
-  <Route index element={<Welcome />} />
-  <Route path="/tickets" element={<TicketList currentUser={currentUser} />} />
-  <Route path="/employees">
-    <Route index element={<EmployeeList />} />
-    <Route path=":employeeId" element={<EmployeeDetails />} />
-  </Route>
-  <Route path="/customers">
-    <Route index element={<CustomerList />} />
-    <Route path=":customerId" element={<CustomerDetails />} />
-  </Route>
-</Route>
-</Routes>
-}
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <NavBar />
+            <Outlet />
+          </>
+        }
+      >
+        <Route index element={<Welcome />} />
+        <Route
+          path="/tickets"
+          element={<TicketList currentUser={currentUser} />}
+        />
+        <Route path="/employees">
+          <Route index element={<EmployeeList />} />
+          <Route path=":employeeId" element={<EmployeeDetails />} />
+        </Route>
+        <Route path="/customers">
+          <Route index element={<CustomerList />} />
+          <Route path=":customerId" element={<CustomerDetails />} />
+        </Route>
+        <Route
+          path="profile"
+          element={<EmployeeForm currentUser={currentUser} />}
+        />
+      </Route>
+    </Routes>
+  );
+};
