@@ -25,3 +25,9 @@ export const updateTicket = (ticket) => {
     )
 }
 
+export const deleteTicket = (id) => {
+    console.log('Deleting ticket:', id);
+    return fetch(`http://localhost:8088/serviceTickets/${id}`, {
+        method: "DELETE",
+    })
+}
